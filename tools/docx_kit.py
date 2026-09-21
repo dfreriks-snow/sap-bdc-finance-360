@@ -1,28 +1,35 @@
 #!/usr/bin/env python3
 """Shim. The real implementation lives in one place.
 
-This file used to be a byte-for-byte copy of the same module in the sibling
-asset repos, so a branding or layout fix applied in one repo silently missed the
-others. The implementation now lives once, at
+This module used to be a byte-for-byte copy in each asset repo, so a branding or
+layout fix applied in one repo silently missed the others. The implementation now
+lives once, owned by the Finance 360 repo and versioned with it:
 
-    /Users/dfreriks/Documents/SAP/sap_doc_kit/sap_docx_kit.py
+    sap-bdc-finance-360/tools/sap_docx_kit.py
 
-and each repo keeps this shim so existing call sites (`from docx_kit import h1,
+Every repo keeps this shim so existing call sites (`from docx_kit import h1,
 table, ...`) continue to work unchanged.
 
-Add nothing here. Edit the shared module instead.
+Add nothing here. Edit sap_docx_kit.py instead.
+
+Note for anyone cloning a Supply Chain repo on its own: the path below is
+absolute, so the Word builders need sap-bdc-finance-360 checked out alongside.
+The failure is loud rather than silent.
 """
 import pathlib
 import sys
 
-_SHARED = pathlib.Path("/Users/dfreriks/Documents/SAP/sap_doc_kit")
-if not (_SHARED / "sap_docx_kit.py").exists():  # fail loudly, not silently
+_OWNER = (pathlib.Path.home() / "Documents" / "SAP" / "SAP Skills"
+          / "sap-bdc-finance-360" / "tools")
+
+if not (_OWNER / "sap_docx_kit.py").exists():
     raise ImportError(
-        f"shared docx kit not found at {_SHARED}/sap_docx_kit.py — "
-        "the Word deliverables cannot be built without it"
+        f"shared docx kit not found at {_OWNER}/sap_docx_kit.py — check out "
+        "sap-bdc-finance-360 alongside this repo; the Word deliverables cannot "
+        "be built without it"
     )
-if str(_SHARED) not in sys.path:
-    sys.path.insert(0, str(_SHARED))
+if str(_OWNER) not in sys.path:
+    sys.path.insert(0, str(_OWNER))
 
 from sap_docx_kit import *  # noqa: F401,F403  (re-export)
 from sap_docx_kit import (  # noqa: F401  explicit, so linters and IDEs resolve them
