@@ -7,7 +7,7 @@ asset and its neighbours.
 
 ## This repository
 
-### [`dfreriks-snow/sap-bdc-finance-360`](https://github.com/dfreriks-snow/sap-bdc-finance-360)
+### [`sfc-gh-dfreriks/sap-bdc-finance-360`](https://github.com/sfc-gh-dfreriks/sap-bdc-finance-360)
 
 The asset this handbook documents.
 

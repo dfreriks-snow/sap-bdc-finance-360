@@ -17,7 +17,7 @@ L0 shares | The three `SAP_BDC_DEMO_*` databases mounted and selectable |
 Python | for `tools/` — `python-docx`, plus a Snowflake connection for the fact extractor |
 
 The repository is at
-`https://github.com/dfreriks-snow/sap-bdc-finance-360`.
+`https://github.com/sfc-gh-dfreriks/sap-bdc-finance-360`.
 
 ---
 

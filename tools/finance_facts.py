@@ -27,7 +27,7 @@ CONN = "dfreriksdemo"
 DB = "SAP_FINANCE_360"
 APP_DB = "FINANCE_360_APP"
 OUT = pathlib.Path("/tmp/finance_facts.json")
-REPO = "https://github.com/dfreriks-snow/sap-bdc-finance-360"
+REPO = "https://github.com/sfc-gh-dfreriks/sap-bdc-finance-360"
 SIDEBAR = (pathlib.Path.home() / "Documents" / "SAP" / "SAP Skills"
            / "finance_dashboard_react" / "client" / "src" / "components" / "Sidebar.tsx")
 API_ROUTES = (pathlib.Path.home() / "Documents" / "SAP" / "SAP Skills"
