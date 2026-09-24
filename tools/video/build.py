@@ -62,7 +62,7 @@ DOMAINS = {
         work=pathlib.Path("/tmp/people_video"),
         out=HOME / "Documents" / "SAP" / "SAP_People_360_Walkthrough.mp4",
         title="SAP People 360",
-        subtitle="Workforce analytics on SAP data that never moved",
+        subtitle="Workforce Analytics on SAP BDC Data\nusing BDC Connect Zero Copy",
         links=[
             ("Live application",
              "irzht4-sfsenorthamerica-dfreriks-aws1-w2.snowflakecomputing.app"),
@@ -256,7 +256,19 @@ def title_card(path, sub):
     img = Image.new("RGBA", (W, VH), NAVY + (255,))
     d = ImageDraw.Draw(img)
     d.text((90, 360), CFG["title"], font=_font(34, True), fill=BLUE)
-    for i, ln in enumerate(_wrap(d, CFG["subtitle"], _font(52, True), 1420)):
+    # A subtitle may carry explicit newlines to control where it breaks: the greedy
+    # wrap is width-optimal but splits phrases badly ("... using BDC" / "Connect
+    # Zero Copy"). Each part is still wrapped, so an over-long part cannot overflow.
+    # Two lines is the ceiling — the strap line below sits at y=560.
+    lines = []
+    for part in CFG["subtitle"].split("\n"):
+        lines.extend(_wrap(d, part, _font(52, True), 1420))
+    if len(lines) > 2:
+        raise SystemExit(
+            f"title subtitle needs {len(lines)} lines; only 2 fit above the strap "
+            f"line at y=560 — shorten it or move the break"
+        )
+    for i, ln in enumerate(lines):
         d.text((90, 410 + i * 62), ln, font=_font(52, True), fill=WHITE)
     d.text((90, 560), sub, font=_font(20), fill=DIM)
     d.rounded_rectangle([90, 620, 250, 624], 2, fill=BLUE + (255,))
