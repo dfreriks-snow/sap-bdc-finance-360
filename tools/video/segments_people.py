@@ -15,7 +15,7 @@ SAP_PEOPLE_360 on account MSB89522.
 FOUR HONESTY BEATS ARE SCRIPTED IN. This is workforce data, so a video that
 glosses over its own limits is worse than useless — someone will find them live:
 
-  * The people are synthetic. Said in the first fifteen seconds, not buried.
+  * The people are synthetic. Said in the first twenty seconds, not buried.
   * Only DT_WORKFORCE_360 is a real dynamic table. The other three carry the
     DT_ prefix by convention and never refresh.
   * The semantic view covers ONE table, so the agent answers workforce questions
@@ -49,12 +49,13 @@ SEGMENTS = [
     dict(
         id="00_open", page="overview", actions=[],
         narration=(
-            "This is workforce analytics running on S A P SuccessFactors data that "
-            "never moved. [[slnc 450]] Twelve hundred and ninety two active "
-            "employees, across twelve departments and three operating companies. "
-            "[[slnc 400]] One thing first, because it matters more here than "
-            "anywhere else — these people are not real. It's a synthetic dataset. "
-            "No names, no real records, invented identifiers."
+            "This is workforce analytics on S A P B D C data, using B D C Connect "
+            "zero copy. [[slnc 450]] Twelve hundred and ninety two active employees, "
+            "across twelve departments and three operating companies — and not one "
+            "row of it was copied out of S A P. [[slnc 400]] One thing first, "
+            "because it matters more here than anywhere else: these people are not "
+            "real. It's a synthetic dataset. No names, no real records, invented "
+            "identifiers."
         ),
         popup=dict(title="SAP People 360", figure="1,292 active",
                    body="Twelve departments across three companies — read from an "
@@ -63,10 +64,12 @@ SEGMENTS = [
     dict(
         id="01_zero_copy", page="lineage", actions=[("wait", 1200)],
         narration=(
-            "Here's the part worth pausing on. [[slnc 300]] Between the S A P share "
-            "and this application there is one view. [[slnc 350]] Not a copy — a "
-            "passthrough view. Nobody built a pipeline to move H R data anywhere, "
-            "which is usually the exact objection that stops a project like this."
+            "Here's the part worth pausing on. [[slnc 300]] B D C Connect shares the "
+            "workforce data product straight into Snowflake, and between that share "
+            "and this application there is exactly one view. [[slnc 350]] Not a "
+            "copy — a passthrough view. Nobody built a pipeline to move H R data "
+            "anywhere, which is usually the exact objection that stops a project "
+            "like this."
         ),
         popup=dict(title="One view, zero copies", figure="no pipeline",
                    body="SAP_BDC_L1.WORKFORCE is a passthrough view over the "
@@ -191,8 +194,9 @@ SEGMENTS = [
     dict(
         id="10_close", page="overview", actions=[("wait", 600)],
         narration=(
-            "So that's the whole thing. [[slnc 400]] One passthrough view over an "
-            "S A P share, a thin modelling layer, and natural language on top. "
+            "So that's the whole thing. [[slnc 400]] B D C Connect for the share, "
+            "one passthrough view over it, a thin modelling layer, and natural "
+            "language on top. "
             "[[slnc 400]] No employee data was copied anywhere to make this work. "
             "[[slnc 350]] Which means the real next conversation isn't about "
             "dashboards — it's about who's allowed to see compensation, and that's "
