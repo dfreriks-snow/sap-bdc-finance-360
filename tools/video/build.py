@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build a narrated walkthrough video for a SAP BDC 360 application.
 
-One builder, two domains. `--domain finance` and `--domain sales` differ only in
-their DOMAINS entry and their segment script; the pipeline itself is identical, so
-a fix to timing or compositing lands for both at once.
+One builder, three domains. `--domain finance`, `--domain sales` and
+`--domain people` differ only in their DOMAINS entry and their segment script; the
+pipeline itself is identical, so a fix to timing or compositing lands for all at
+once.
 
 Four phases, in dependency order:
 
@@ -51,6 +52,22 @@ DOMAINS = {
              "erzht4-sfsenorthamerica-dfreriks-aws1-w2.snowflakecomputing.app"),
             ("Source and documentation",
              "github.com/dfreriks-snow/sap-bdc-finance-360"),
+            ("Built on",
+             "SAP BDC zero-copy shares · Snowflake · Cortex Analyst"),
+        ],
+    ),
+    "people": dict(
+        segments="segments_people",
+        app="http://localhost:5180/",
+        work=pathlib.Path("/tmp/people_video"),
+        out=HOME / "Documents" / "SAP" / "SAP_People_360_Walkthrough.mp4",
+        title="SAP People 360",
+        subtitle="Workforce analytics on SAP data that never moved",
+        links=[
+            ("Live application",
+             "irzht4-sfsenorthamerica-dfreriks-aws1-w2.snowflakecomputing.app"),
+            ("Source and documentation",
+             "github.com/dfreriks-snow/sap-bdc-people-360"),
             ("Built on",
              "SAP BDC zero-copy shares · Snowflake · Cortex Analyst"),
         ],
