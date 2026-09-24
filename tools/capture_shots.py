@@ -48,6 +48,11 @@ APPS = {
         "sidebar": SKILLS / "sales_360_react/client/src/components/Sidebar.tsx",
         "out": pathlib.Path("/tmp/sales_shots"),
     },
+    "people": {
+        "url": "http://localhost:5180",
+        "sidebar": SKILLS / "people_360_react/client/src/components/Sidebar.tsx",
+        "out": pathlib.Path("/tmp/people_shots"),
+    },
 }
 
 
